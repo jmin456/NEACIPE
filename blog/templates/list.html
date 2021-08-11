@@ -1,0 +1,66 @@
+{%extends 'search.html'%}
+
+{%block content%}
+<br>
+<br>
+<br>
+<br>
+<style>
+
+.all_stuff {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  flex: 0 0 auto;
+  width: 100%;
+  margin-bottom: 10%; */
+  display: flex;
+  flex-direction: column;
+    margin: 30px;
+}
+
+.allaround {
+    display: flex;
+    flex-direction: row;
+    margin: 40px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 20px 20px 10px 20px;
+}
+.blog_writer {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+.blog_summary{
+    font-size: 18px;
+    font-weight: bolder;
+}
+</style>
+    <h1>내가 쓴 레시피</h1>
+
+    <div class="container">
+    {% for blog in blogs%}
+        <div class="allaround">
+                <div class="blog_image">
+                    {%if blog.image %}
+                    <p><img src = "{{blog.image.url}}" alt ="" width="209" height="150"></p>
+                    {%endif%}
+                </div>
+            <div class="all_stuff">
+                <h4 class="blog_title"> <a href = "{%url 'detail' blog.id%}">{{blog.title}}</a></h4>
+                <div class="blog_writer">
+                    <a>ID: </a> {{blog.writer}}
+                </div>
+                <p class="blog_summary">{{blog.summary}}...</p>
+
+                <br>
+            </div>
+        </div>
+        
+    {% endfor %}
+    </div>
+
+{%endblock%}

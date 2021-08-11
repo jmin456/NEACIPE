@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h5>결과</h5>
+    {{checks}}<br>
+    <br><br>
+
+    {{results}}<br><br>
+    {% for blog in blogs %}
+        {% if blog.title in results %}
+            {{blog.title}}<br>
+            {{blog.checks}}<br>
+        {% endif %}
+    {%endfor%}
+
+{% endblock %}

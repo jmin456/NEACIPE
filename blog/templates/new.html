@@ -1,0 +1,920 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<br>
+<br>
+<br>
+<br>
+<div class="detail_title"><h1>새로운 NEACIPE</h1></div>
+
+<form action="{%url 'create'%}" method="post" enctype="multipart/form-data" name="search_filter">
+    {%csrf_token%}
+        <div class="detail-form">
+            <h5>요리 이름</h5>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <h5>재료</h5>
+            <div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            축산/계란
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="소고기"
+                                       id="beef">
+                                <label class="form-check-label" for="beef">소고기</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="돼지고기" id="pork">
+                                <label class="form-check-label" for="pork">돼지고기</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="닭고기"
+                                       id="chicken">
+                                <label class="form-check-label" for="chicken">닭고기</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="양고기"
+                                       id="lamb">
+                                <label class="form-check-label" for="lamb">양고기</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 육고기" id="meet_etc">
+                                <label class="form-check-label" for="meet_etc">기타 육고기</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="계란"
+                                       id="egg">
+                                <label class="form-check-label" for="egg">계란</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            생선
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="고등어"
+                                       id="godeung">
+                                <label class="form-check-label" for="godeung">고등어</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="조기"
+                                       id="jogi">
+                                <label class="form-check-label" for="jogi">조기</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="연어"
+                                       id="salmon">
+                                <label class="form-check-label" for="salmon">연어</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="굴비"
+                                       id="gulbi">
+                                <label class="form-check-label" for="gulbi">굴비</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="장어"
+                                       id="jang">
+                                <label class="form-check-label" for="jang">장어</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="대구"
+                                       id="daegu">
+                                <label class="form-check-label" for="daegu">대구</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="명태"
+                                       id="myeong">
+                                <label class="form-check-label" for="myeong">명태</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="참치"
+                                       id="tuna">
+                                <label class="form-check-label" for="tuna">참치</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 생선" id="fish_etc">
+                                <label class="form-check-label" for="fish_etc">기타 생선</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            연체류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       onclick=showpicks2(this) value="오징어" id="squid">
+                                <label class="form-check-label" for="squid">오징어</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       onclick=showpicks2(this) value="낙지" id="nakji">
+                                <label class="form-check-label" for="nakji">낙지</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       onclick=showpicks2(this) value="문어" id="octopus">
+                                <label class="form-check-label" for="octopus">문어</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       onclick=showpicks2(this) value="쭈꾸미" id="jju">
+                                <label class="form-check-label" for="jju">쭈꾸미</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            갑각류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="새우"
+                                       id="shrimp">
+                                <label class="form-check-label" for="shrimp">새우</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="꽃게"
+                                       id="crab">
+                                <label class="form-check-label" for="crab">꽃게</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="대게"
+                                       id="bigcrab">
+                                <label class="form-check-label" for="bigcrab">대게</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="랍스터"
+                                       id="lobster">
+                                <label class="form-check-label" for="lobster">랍스터</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="킹크랩"
+                                       id="kingcrab">
+                                <label class="form-check-label" for="kingcrab">킹크랩</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 갑각류" id="crab_etc">
+                                <label class="form-check-label" for="crab_etc">기타 갑각류</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu5" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            조개류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="전복"
+                                       id="jeonbok">
+                                <label class="form-check-label" for="jeonbok">전복</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="굴"
+                                       id="oyster">
+                                <label class="form-check-label" for="oyster">굴</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="홍합"
+                                       id="honghab">
+                                <label class="form-check-label" for="honghab">홍합</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="바지락"
+                                       id="bajirak">
+                                <label class="form-check-label" for="bajirak">바지락</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="꼬막"
+                                       id="ggomak">
+                                <label class="form-check-label" for="ggomak">꼬막</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="골뱅이"
+                                       id="golbang">
+                                <label class="form-check-label" for="golbang">골뱅이</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="가리비"
+                                       id="garibi">
+                                <label class="form-check-label" for="garibi">가리비</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="조개관자" id="gwanja">
+                                <label class="form-check-label" for="gwanja">조개관자</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 조개" id="shell_etc">
+                                <label class="form-check-label" for="shell_etc">기타 조개</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 어패류" id="seafood_etc">
+                                <label class="form-check-label" for="seafood_etc">기타 어패류</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu6" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            해조류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="김"
+                                       id="gim">
+                                <label class="form-check-label" for="gim">김</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="미역"
+                                       id="miyeok">
+                                <label class="form-check-label" for="miyeok">미역</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="다시마"
+                                       id="dasima">
+                                <label class="form-check-label" for="dasima">다시마</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 해조류" id="seaweed_etc">
+                                <label class="form-check-label" for="seaweed_etc">기타 해조류</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu7" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            분말류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu7">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="밀가루"
+                                       id="mil">
+                                <label class="form-check-label" for="mil">밀가루</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="부침가루" id="buchim">
+                                <label class="form-check-label" for="buchim">부침가루</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="튀김가루" id="tuigim">
+                                <label class="form-check-label" for="tuigim">튀김가루</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="빵가루"
+                                       id="bbang">
+                                <label class="form-check-label" for="bbang">빵가루</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="전분"
+                                       id="jeonbun">
+                                <label class="form-check-label" for="jeonbun">전분</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu8" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            조미류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu8">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="설탕"
+                                       id="sugar">
+                                <label class="form-check-label" for="sugar">설탕</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="소금"
+                                       id="salt">
+                                <label class="form-check-label" for="salt">소금</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="후추"
+                                       id="pepper">
+                                <label class="form-check-label" for="pepper">후추</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="고춧가루" id="gochupowder">
+                                <label class="form-check-label" for="gochupowder">고춧가루</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="다진 마늘" id="garlicchop">
+                                <label class="form-check-label" for="garlicchop">다진 마늘</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="다시다/조미료" id="dashida">
+                                <label class="form-check-label" for="dashida">다시다 및 조미료</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 조미료" id="seasoning_etc">
+                                <label class="form-check-label" for="seasoning_etc">기타 조미료</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 향신료" id="spice_etc">
+                                <label class="form-check-label" for="spice_etc">기타 향신료</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu9" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            장류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu9">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="간장"
+                                       id="soysauce">
+                                <label class="form-check-label" for="soysauce">간장</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="고추장"
+                                       id="gochujang">
+                                <label class="form-check-label" for="gochujang">고추장</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="된장"
+                                       id="doenjang">
+                                <label class="form-check-label" for="doenjang">된장</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="청국장"
+                                       id="chunggukjang">
+                                <label class="form-check-label" for="chunggukjang">청국장</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="쌈장"
+                                       id="ssamjang">
+                                <label class="form-check-label" for="ssamjang">쌈장</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="비빔장"
+                                       id="bibimjang">
+                                <label class="form-check-label" for="bibimjang">비빔장</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 장류" id="jang_etc">
+                                <label class="form-check-label" for="jang_etc">기타 장류</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu10"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            소스류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="케찹"
+                                       id="ketchup">
+                                <label class="form-check-label" for="ketchup">케찹</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="마요네즈" id="mayo">
+                                <label class="form-check-label" for="mayo">마요네즈</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="머스타드" id="mustard">
+                                <label class="form-check-label" for="mustard">머스타드</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="식초"
+                                       id="vinegar">
+                                <label class="form-check-label" for="vinegar">식초</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="물엿"
+                                       id="syrup">
+                                <label class="form-check-label" for="syrup">물엿</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="꿀"
+                                       id="honey">
+                                <label class="form-check-label" for="honey">꿀</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="올리고당" id="oligo">
+                                <label class="form-check-label" for="oligo">올리고당</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="액젓"
+                                       id="fishsauce">
+                                <label class="form-check-label" for="fishsauce">액젓</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="토마토소스" id="tomatosauce">
+                                <label class="form-check-label" for="tomatosauce">토마토소스</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="크림소스" id="crimsauce">
+                                <label class="form-check-label" for="crimsauce">크림소스</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="칠리소스" id="chilisauce">
+                                <label class="form-check-label" for="chilisauce">칠리소스</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="굴소스"
+                                       id="oystersauce">
+                                <label class="form-check-label" for="oystersauce">굴소스</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="스리라차소스" id="srirachasauce">
+                                <label class="form-check-label" for="srirachasauce">스리라차소스</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 소스" id="sauce_etc">
+                                <label class="form-check-label" for="sauce_etc">기타 소스</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu11"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            면류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu11">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="라면"
+                                       id="ramen">
+                                <label class="form-check-label" for="ramen">라면</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="소면"
+                                       id="somyeon">
+                                <label class="form-check-label" for="somyeon">소면</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="중면"
+                                       id="jungmyeon">
+                                <label class="form-check-label" for="jungmyeon">중면</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="칼국수"
+                                       id="kal">
+                                <label class="form-check-label" for="kal">칼국수</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="수제비"
+                                       id="sujebi">
+                                <label class="form-check-label" for="sujebi">수제비</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="우동"
+                                       id="udong">
+                                <label class="form-check-label" for="udong">우동</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="쌀국수"
+                                       id="ricemyeon">
+                                <label class="form-check-label" for="ricemyeon">쌀국수</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="또띠아"
+                                       id="tortilla">
+                                <label class="form-check-label" for="tortilla">또띠아</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="쫄면"
+                                       id="jjolmyeon">
+                                <label class="form-check-label" for="jjolmyeon">쫄면</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="당면"
+                                       id="dangmyeon">
+                                <label class="form-check-label" for="dangmyeon">당면</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="스파게티" id="spaghetti">
+                                <label class="form-check-label" for="spaghetti">스파게티</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 파스타" id="pasta_etc">
+                                <label class="form-check-label" for="pasta_etc">기타 파스타</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="두부면"
+                                       id="tofumyeon">
+                                <label class="form-check-label" for="tofumyeon">두부면</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 면류" id="myeon_etc">
+                                <label class="form-check-label" for="myeon_etc">기타 면류</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu12"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            가공식품
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="참치 통조림" id="tunacan">
+                                <label class="form-check-label" for="tunacan">참치 통조림</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="옥수수 통조림" id="corncan">
+                                <label class="form-check-label" for="corncan">옥수수 통조림</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="햄 통조림" id="spam">
+                                <label class="form-check-label" for="spam">햄 통조림</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="소시지"
+                                       id="sausage">
+                                <label class="form-check-label" for="sausage">소시지</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 햄류" id="ham_etc">
+                                <label class="form-check-label" for="ham_etc">기타 햄류</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="꽁치 통조림" id="ggongcan">
+                                <label class="form-check-label" for="ggongcan">꽁치 통조림</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 통조림" id="can_etc">
+                                <label class="form-check-label" for="can_etc">기타 통조림</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="카레"
+                                       id="curry">
+                                <label class="form-check-label" for="curry">카레</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="짜장"
+                                       id="jjajang">
+                                <label class="form-check-label" for="jjajang">짜장</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 양념" id="seasonfood_etc">
+                                <label class="form-check-label" for="seasonfood_etc">기타 양념</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu13"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            두부/잡곡
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu13">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="두부"
+                                       id="tofu">
+                                <label class="form-check-label" for="tofu">두부</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="찹쌀"
+                                       id="chaprice">
+                                <label class="form-check-label" for="chaprice">찹쌀</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="콩"
+                                       id="bean">
+                                <label class="form-check-label" for="bean">콩</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="팥"
+                                       id="redbean">
+                                <label class="form-check-label" for="redbean">팥</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="깨"
+                                       id="sesame">
+                                <label class="form-check-label" for="sesame">깨</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 잡곡" id="cereal_etc">
+                                <label class="form-check-label" for="cereal_etc">기타 잡곡</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu14"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            뿌리채소
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu14">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="당근"
+                                       id="carrot">
+                                <label class="form-check-label" for="carrot">당근</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="무"
+                                       id="radish">
+                                <label class="form-check-label" for="radish">무</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="마늘"
+                                       id="garlic">
+                                <label class="form-check-label" for="garlic">마늘</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="양파"
+                                       id="onion">
+                                <label class="form-check-label" for="onion">양파</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="감자"
+                                       id="potato">
+                                <label class="form-check-label" for="potato">감자</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="고구마"
+                                       id="sweetpotato">
+                                <label class="form-check-label" for="sweetpotato">고구마</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 뿌리 채소" id="rootvege_etc">
+                                <label class="form-check-label" for="rootvege_etc">기타 뿌리 채소</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu15"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            열매채소
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu15">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="오이"
+                                       id="cucumber">
+                                <label class="form-check-label" for="cucumber">오이</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="가지"
+                                       id="gaji">
+                                <label class="form-check-label" for="gaji">가지</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="애호박"
+                                       id="greenpumpkin">
+                                <label class="form-check-label" for="greenpumpkin">애호박</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="단호박"
+                                       id="sweetpumpkin">
+                                <label class="form-check-label" for="sweetpumpkin">단호박</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="고추"
+                                       id="chilipeper">
+                                <label class="form-check-label" for="chilipeper">고추</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="옥수수"
+                                       id="corn">
+                                <label class="form-check-label" for="corn">옥수수</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="피망"
+                                       id="piment">
+                                <label class="form-check-label" for="piment">피망</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 열매채소" id="fruitvege_etc">
+                                <label class="form-check-label" for="fruitvege_etc">기타 열매채소</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu16"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            나물/잎줄기채소
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu16">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="시금치"
+                                       id="spinach">
+                                <label class="form-check-label" for="spinach">시금치</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="미나리"
+                                       id="minari">
+                                <label class="form-check-label" for="minari">미나리</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="고사리"
+                                       id="gosari">
+                                <label class="form-check-label" for="gosari">고사리</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="배추"
+                                       id="cabbage">
+                                <label class="form-check-label" for="cabbage">배추</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="부추"
+                                       id="buchu">
+                                <label class="form-check-label" for="buchu">부추</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="브로콜리" id="broccoli">
+                                <label class="form-check-label" for="broccoli">브로콜리</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="아스파라거스" id="asparagus">
+                                <label class="form-check-label" for="asparagus">아스파라거스</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="청경채"
+                                       id="chunggyeongchae">
+                                <label class="form-check-label" for="chunggyeongchae">청경채</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="상추"
+                                       id="lettuce">
+                                <label class="form-check-label" for="lettuce">상추</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="깻잎"
+                                       id="sesameleaf">
+                                <label class="form-check-label" for="sesameleaf">깻잎</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this) value="쑥갓"
+                                       id="ssuck">
+                                <label class="form-check-label" for="ssuck">쑥갓</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 나물채소" id="herbvege_etc">
+                                <label class="form-check-label" for="herbvege_etc">기타 나물채소</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 잎줄기채소" id="leafvege_etc">
+                                <label class="form-check-label" for="leafvege_etc">기타 잎줄기채소</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu17"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            버섯류
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu17">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="새송이버섯" id="saesong">
+                                <label class="form-check-label" for="saesong">새송이버섯</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="느타리버섯" id="neutari">
+                                <label class="form-check-label" for="neutari">느타리버섯</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="양송이버섯" id="yangsong">
+                                <label class="form-check-label" for="yangsong">양송이버섯</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="표고버섯" id="pyogo">
+                                <label class="form-check-label" for="pyogo">표고버섯</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="팽이버섯" id="peang">
+                                <label class="form-check-label" for="peang">팽이버섯</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="능이버섯" id="neung">
+                                <label class="form-check-label" for="neung">능이버섯</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="목이버섯" id="mok">
+                                <label class="form-check-label" for="mok">목이버섯</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="checks[]" onclick=showpicks2(this)
+                                       value="기타 버섯" id="mushroom_etc">
+                                <label class="form-check-label" for="mushroom_etc">기타 버섯</label>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h6>선택한 재료</h6>
+            <input class="form-control" type="text" name=tt value="" aria-label="Disabled input example" disabled readonly>
+<!--            <div class="sec2">-->
+<!--                <button class="btn btn-primary btn-xl rounded-first mt-5 btn-search" type="submit">검색</button>-->
+<!--            </div>-->
+            <script>
+                _s = "";
+                function showpicks2(box) {
+                    if (box.checked == true) _s += box.value+" / " ;
+                    document.search_filter.tt.value = _s.substring(0,_s.length-2);
+                    if (box.checked == false) _s = _s.replace(box.value+" / ","");
+                    document.search_filter.tt.value = _s.substring(0,_s.length-2);
+                    }
+            </script>
+
+            <h5>만드는 법</h5>
+            <div class="input-group">
+              <textarea class="form-control" name="body" aria-label="With textarea" cols="125" rows="10" ></textarea>
+            </div>
+            <h5>사진</h5>
+            <div class="input-group mb-3">
+              <input type="file" class="form-control" name="image" id="inputGroupFile02">
+            </div>
+        </div>
+        <br>
+        <div class="sec2">
+            <button class="btn btn-primary btn-xl rounded-first mt-5 btn-search" type="submit">공유</button>
+        </div>
+
+
+</form>
+
+{%endblock%}
+
