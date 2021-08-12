@@ -41,26 +41,25 @@
 </style>
     <h1>내가 쓴 레시피</h1>
 
-    <div class="container">
 
-    {% for blog in blogs %}
-        <div class="allaround">
-                <div class="blog_image">
+    <div class="container2">
+        {% for blog in blogs %}
+            {% if blog.writer == user.get_username %}
+            <div class="allaround2">
+                <div class = "blog_image2">
                     {%if blog.image %}
-                    <p><img src = "{{blog.image.url}}" alt ="" width="209" height="150"></p>
+                    <p><a href = "{%url 'detail' blog.id%}"><img src = "{{blog.image.url}}" alt ="" width="209" height="150">
+                    </a></p>
                     {%endif%}
                 </div>
-            <div class="all_stuff">
-                <h4 class="blog_title"> <a href = "{%url 'detail' blog.id %}">{{blog.title}}</a></h4>
-                <div class="blog_writer">
-                    <a>ID: </a> {{blog.writer}}
+                <div class="all_stuff2"><br>
+                    <h4 class="blog_title2"><a href = "{%url 'detail' blog.id%}">{{blog.title}}</a></h4>
+                    <div><span class="usname">{{blog.writer}}</span>님의 레시피</div><br>
+                    사용한 재료 : <strong>{{blog.checks}}</strong><br>
                 </div>
-                <p class="blog_summary">{{blog.summary}}...</p>
-
-                <br>
             </div>
-        </div>
-    {% endfor %}
+            {% endif %}
+        {%endfor%}
     </div>
 
-{%endblock%}
+{% endblock %}

@@ -32,7 +32,6 @@ def detail(request,id):
     return render(request, 'detail.html', {'blog':blog})
 
 def new(request):
-    # form = BlogForm()
     return render(request, 'new.html')
 
 
