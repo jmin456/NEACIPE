@@ -19,48 +19,6 @@ def result(request):
                     results.append(blog.title)
     return render(request, "result.html",{'blogs':blogs,'checks':checks,'results':results})
 
-
-
-
-
-    # for blog in blogs:
-    #     # b=blog.checks.split("'")
-    #     # checks_list.append(b)
-    #     checks_list.append(blog.checks.split(','))
-    # for i in checks_list:
-    #     a+=i
-    #     for j in i:
-    #         b+=j
-    #         if j in checks:
-    #             if i not in result_list:
-    #                 result_list.append(i)
-    # for blog in blogs:
-    #     # b=blog.checks.split("'")
-    #     # checks_list.append(b)
-    #     checks_list=blog.checks.split(',')
-    #
-    #     for i in checks_list:
-    #         a+=i
-    #         for j in i:
-    #             b+=j
-    #             if j in checks:
-    #                 if i not in result_list:
-    #                     result_list.append(i)
-
-    # for blog in blogs:
-    #     # b=blog.checks.split("'")
-    #     # checks_list.append(b)
-    #     checks_list.append(blog.checks.split(','))
-    # for i in checks_list:
-    #     a+=i
-    #     for j in i:
-    #         b+=j
-    #         if j in checks:
-    #             if i not in result_list:
-    #                 result_list.append(i)
-    #
-    # return render(request, "result.html",{'blogs':blogs,'checks':checks,'checks_list':checks_list,'result_list':result_list,'a':a,'b':b})
-
 def list(request):
     blogs = Blog.objects.all()
     return render(request, 'list.html', {'blogs':blogs})
