@@ -121,6 +121,13 @@ hr:not([size]) {
   height: 1px;
 }
 
+<<<<<<< HEAD
+=======
+.subtext{
+white-space: pre-wrap;
+}
+
+>>>>>>> a700548f61ebc4d607c814ed9a8e9e7871c2f320
 .length{
 font-size:1.5rem;
 color: #BC2C22;
@@ -3583,6 +3590,13 @@ padding-bottom:3rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
+}
+
+.id_check .btn-sm{
+color:white;
+background-color:#bc2c22;
+border-color:#bc2c22;
+float:right;
 }
 
 .fade {

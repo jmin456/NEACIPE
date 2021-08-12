@@ -2,18 +2,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>회원가입</h5>
+<h5>회원가입</h5><br><br>
 <form method="POST" action="{% url 'signup' %}">
     {% csrf_token %}
-    <p>username</p>
-    <input type="text" name="username">
+    <p>아이디</p>
+    <input class="form-control" type="text" name="username">
     <br>
+<<<<<<< HEAD
     <p>password</p>
     <input type="password" name="password">
     <br>
     <p>confirm</p>
     <input type="password" name="confirm">
+=======
+    <p>비밀번호</p>
+    <input class="form-control" type="password" name="password">
     <br>
-    <input type="submit" value="회원가입">
+    <p>비밀번호 확인</p>
+    <input class="form-control" type="password" name="confirm">
+>>>>>>> a700548f61ebc4d607c814ed9a8e9e7871c2f320
+    <br>
+    <button class="btn btn-primary btn-xl rounded-first mt-5 btn-search" type="submit">로그인</button>
 </form>
 {% endblock %}

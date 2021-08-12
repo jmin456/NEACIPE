@@ -35,4 +35,8 @@ urlpatterns = [
     path('delete/<str:id>', b_views.delete, name="delete"),
     path('list/', b_views.list, name='list'),
     path('logout/', views.logout, name='logout'),
+<<<<<<< HEAD
+=======
+    path('signupagain/', views.signupagain, name='signupagain'),
+>>>>>>> a700548f61ebc4d607c814ed9a8e9e7871c2f320
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

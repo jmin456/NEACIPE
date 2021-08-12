@@ -41,12 +41,20 @@
 </style>
     <h1>내가 쓴 레시피</h1>
 
+<<<<<<< HEAD
 
     <div class="container2">
         {% for blog in blogs %}
             {% if blog.writer == user.get_username %}
             <div class="allaround2">
                 <div class = "blog_image2">
+=======
+    <div class="container">
+    {% for blog in blogs%}
+<!--        {% if blog.writer ==-->
+        <div class="allaround">
+                <div class="blog_image">
+>>>>>>> a700548f61ebc4d607c814ed9a8e9e7871c2f320
                     {%if blog.image %}
                     <p><a href = "{%url 'detail' blog.id%}"><img src = "{{blog.image.url}}" alt ="" width="209" height="150">
                     </a></p>
