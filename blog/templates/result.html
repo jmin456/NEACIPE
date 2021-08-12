@@ -2,16 +2,78 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h5>결과</h5>
-    검색내용<br>{{checks}}<br>
-    <br><br>
+<!--    <h5>결과</h5>-->
+<!--    검색내용<br>{{checks}}<br>-->
+<!--    <br><br>-->
 
-    {{results}}<br><br>
-    {% for blog in blogs %}
-        {% if blog.title in results %}
-            {{blog.title}}<br>
-            {{blog.checks}}<br>
-        {% endif %}
-    {%endfor%}
+<!--    {{results}}<br><br>-->
+<!--    {% for blog in blogs %}-->
+<!--        {% if blog.title in results %}-->
+<!--            {{blog.title}}<br>-->
+<!--            {{blog.checks}}<br>-->
+<!--        {% endif %}-->
+<!--    {%endfor%}-->
+
+<!--    <style>-->
+<!--        .length {-->
+<!--            font-size: 20px;-->
+<!--            padding-left: 10px;-->
+<!--            padding-right: 10px;-->
+<!--            color: #BC2C22;-->
+<!--            font-weight: bolder;-->
+<!--        }-->
+
+<!--        .all_stuff2 {-->
+
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--        margin: 30px;-->
+<!--        }-->
+
+<!--        .allaround2 {-->
+<!--            display: flex;-->
+<!--            flex-direction: row;-->
+<!--            margin: 40px;-->
+<!--            border-style: solid;-->
+<!--            border-width: 1.5px;-->
+<!--            padding: 20px 20px 10px 20px;-->
+<!--        }      -->
+<!--        .inform {-->
+<!--            display: flex;-->
+<!--        }-->
+<!--        .research {-->
+<!--            flex-grow: 1;-->
+<!--        }-->
+<!--        -->
+<!--    </style>-->
+
+    <div class="inform">
+        <h5 class="research">검색 결과</h5>
+
+        <h5><a href="{%url 'search' %}">↺ 다시 검색</a></h5>
+    </div>
+    <p><h5>
+    고르신 재료 <span class="length">{{checks}}</span>로 만들 수 있는 요리는 총 <span class="length">{{length}}</span>개 입니다.
+    </h5></p><br>
+
+    <div class="container2">
+        {% for blog in blogs %}
+            {% if blog.title in results %}
+            <div class="allaround2">
+                <div class = "blog_image2">
+                    {%if blog.image %}
+                    <p><a href = "{%url 'detail' blog.id%}"><img src = "{{blog.image.url}}" alt ="" width="209" height="150">
+                    </a></p>
+                    {%endif%}
+                </div>
+                <div class="all_stuff2"><br>
+                    <h4 class="blog_title2"><a href = "{%url 'detail' blog.id%}">{{blog.title}}</a></h4>
+                    <div><span class="usname">{{blog.writer}}</span>님의 레시피</div><br>
+                    사용한 재료 : <strong>{{blog.checks}}</strong><br>
+                </div>
+            </div>
+            {% endif %}
+        {%endfor%}
+    </div>
 
 {% endblock %}

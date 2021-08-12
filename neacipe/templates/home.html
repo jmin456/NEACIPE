@@ -28,9 +28,19 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{%url 'search' %}">레시피 검색</a></li>
+                        {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{%url 'new' %}">레시피 추가</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{%url 'new' %}">{{ user.username }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+                            로그아웃</a>
+                            <form id="logout" method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %} <input type="hidden" />
+                            </form>
+                        </li>
+                        {% else %}
                         <li class="nav-item"><a class="nav-link" href="{%url 'login' %}">로그인</a></li>
                         <li class="nav-item"><a class="nav-link" href="{%url 'signup' %}">회원가입</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

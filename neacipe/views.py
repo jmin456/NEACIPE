@@ -34,12 +34,45 @@ def logout(request):
 
 def signup(request):
     if request.method == 'POST':
-        if request.POST['password'] == request.POST['confirm']:
-            user = User.objects.create_user(
-                                            username=request.POST['username'],
-                                            password=request.POST['password'],
-                                           )
-            auth.login(request, user)
-            return redirect('home')
-        return render(request, 'signup.html')
+        try:
+            if request.POST['password'] == request.POST['confirm']:
+                user = User.objects.create_user(
+                                                username=request.POST['username'],
+                                                password=request.POST['password'],
+                                               )
+                auth.login(request, user)
+                return redirect('home')
+            return render(request, 'signup.html')
+        except:
+            return render(request, 'signup.html')
     return render(request, 'signup.html')
+
+def signup(request):
+    if request.method == 'POST':
+        try:
+            if request.POST['password'] == request.POST['confirm']:
+                user = User.objects.create_user(
+                                                username=request.POST['username'],
+                                                password=request.POST['password'],
+                                               )
+                auth.login(request, user)
+                return redirect('home')
+            return render(request, 'signupagain.html')
+        except:
+            return render(request, 'signupagain.html')
+    return render(request, 'signupagain.html')
+
+def signupagain(request):
+    if request.method == 'POST':
+        try:
+            if request.POST['password'] == request.POST['confirm']:
+                user = User.objects.create_user(
+                                                username=request.POST['username'],
+                                                password=request.POST['password'],
+                                               )
+                auth.login(request, user)
+                return redirect('home')
+            return render(request, 'signupagain.html')
+        except:
+            return render(request, 'signupagain.html')
+    return render(request, 'signupagain.html')

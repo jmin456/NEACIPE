@@ -2,14 +2,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>로그인</h5><br><br>
-<form method="POST" action="{% url 'login' %}">
+<h5>회원가입</h5><br><br>
+<form method="POST" action="{% url 'signup' %}">
     {% csrf_token %}
     <p>아이디</p>
     <input class="form-control" type="text" name="username">
+    중복된 아이디입니다. 다시 입력해주세요.<br>
     <br>
     <p>비밀번호</p>
     <input class="form-control" type="password" name="password">
+    <br>
+    <p>비밀번호 확인</p>
+    <input class="form-control" type="password" name="confirm">
     <br>
     <button class="btn btn-primary btn-xl rounded-first mt-5 btn-search" type="submit">로그인</button>
 </form>
