@@ -59,9 +59,9 @@
             날짜:  {{blog.pub_date}}
         </div>
         <br>
-        <a href = "{% url 'edit' blog.id %}">수정하기</a>
+<!--        <a href = "{% url 'edit' blog.id %}">수정하기</a>-->
         <a href = "{% url 'delete' blog.id%}">삭제하기</a>
-        <a href = "{% url 'list' %}">목록</a>
+        <a href = "{% url 'list' blog.id %}">목록</a>
     </div>
 
     <div id="aside">

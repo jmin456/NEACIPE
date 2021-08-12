@@ -60,7 +60,7 @@ def signup(request):
             return render(request, 'signupagain.html')
         except:
             return render(request, 'signupagain.html')
-    return render(request, 'signupagain.html')
+    return render(request, 'signup.html')
 
 def signupagain(request):
     if request.method == 'POST':
