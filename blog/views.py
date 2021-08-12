@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.utils import timezone
 from .models import Blog
 from itertools import combinations
+from neacipe.views import *
+from django.contrib import auth
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -17,49 +20,11 @@ def result(request):
                 counter += 1
                 if counter == len(blog.checks):
                     results.append(blog.title)
-    return render(request, "result.html",{'blogs':blogs,'checks':checks,'results':results})
-
-
-
-
-
-    # for blog in blogs:
-    #     # b=blog.checks.split("'")
-    #     # checks_list.append(b)
-    #     checks_list.append(blog.checks.split(','))
-    # for i in checks_list:
-    #     a+=i
-    #     for j in i:
-    #         b+=j
-    #         if j in checks:
-    #             if i not in result_list:
-    #                 result_list.append(i)
-    # for blog in blogs:
-    #     # b=blog.checks.split("'")
-    #     # checks_list.append(b)
-    #     checks_list=blog.checks.split(',')
-    #
-    #     for i in checks_list:
-    #         a+=i
-    #         for j in i:
-    #             b+=j
-    #             if j in checks:
-    #                 if i not in result_list:
-    #                     result_list.append(i)
-
-    # for blog in blogs:
-    #     # b=blog.checks.split("'")
-    #     # checks_list.append(b)
-    #     checks_list.append(blog.checks.split(','))
-    # for i in checks_list:
-    #     a+=i
-    #     for j in i:
-    #         b+=j
-    #         if j in checks:
-    #             if i not in result_list:
-    #                 result_list.append(i)
-    #
-    # return render(request, "result.html",{'blogs':blogs,'checks':checks,'checks_list':checks_list,'result_list':result_list,'a':a,'b':b})
+    length = len(results)
+    checks = str(checks).rstrip(']').lstrip('[').replace("'",'')
+    for blog in blogs:
+        blog.checks = str(blog.checks).rstrip(']').lstrip('[').replace("'",'')
+    return render(request, "result.html",{'blogs':blogs,'checks':checks,'results':results,'length':length})
 
 def list(request):
     blogs = Blog.objects.all()
@@ -77,21 +42,13 @@ def new(request):
 def create(request):
     new_blog = Blog()
     new_blog.title = request.POST['title']
-    # new_blog.writer = request.POST['writer']
+    new_blog.writer = request.POST['writer']
     new_blog.body = request.POST['body']
     new_blog.pub_date = timezone.now()
     new_blog.image = request.FILES['image']
     new_blog.checks = str(request.POST.getlist('checks[]')).lstrip('[').rstrip(']').replace("'","")
     new_blog.save()
     return redirect('detail', new_blog.id)
-
-    # form=BlogForm(request.POST, request.FILES)
-    # if form.is_valid():
-    #     new_blog = form.save(commit = False)
-    #     new_blog.pub_date = timezone.now()
-    #     new_blog.save()
-    #     return redirect('detail', new_blog.id)
-    # return redirect('home')
 
 def edit(request, id):
     edit_blog = Blog.objects.get(id=id)
@@ -109,4 +66,4 @@ def update(request, id):
 def delete(request, id):
     delete_blog = Blog.objects.get(id=id)
     delete_blog.delete()
-    return redirect('list')
+    return redirect('home')

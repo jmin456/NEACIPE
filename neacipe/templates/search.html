@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<br>
 <h5>검색하기</h5><br>
 <form action="{% url 'result' %}" method="post" name="search_filter">
     {% csrf_token %}

@@ -9,6 +9,7 @@ class Blog(models.Model):
     checks = models.TextField(null=True)
     body = models.TextField()
     image = models.ImageField(upload_to="blog/", blank=True, null=True)
+    # writer = models.CharField(max_length=200)
 
 
 

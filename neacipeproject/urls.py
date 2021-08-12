@@ -34,4 +34,5 @@ urlpatterns = [
     path('update/<str:id>', b_views.update, name="update"),
     path('delete/<str:id>', b_views.delete, name="delete"),
     path('list/', b_views.list, name='list'),
+    path('logout/', views.logout, name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
