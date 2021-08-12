@@ -43,14 +43,6 @@ def create(request):
     new_blog.save()
     return redirect('detail', new_blog.id)
 
-    # form=BlogForm(request.POST, request.FILES)
-    # if form.is_valid():
-    #     new_blog = form.save(commit = False)
-    #     new_blog.pub_date = timezone.now()
-    #     new_blog.save()
-    #     return redirect('detail', new_blog.id)
-    # return redirect('home')
-
 def edit(request, id):
     edit_blog = Blog.objects.get(id=id)
     return render(request, 'edit.html', {'blog':edit_blog})
