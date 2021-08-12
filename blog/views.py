@@ -24,9 +24,8 @@ def result(request):
     return render(request, "result.html",{'blogs':blogs,'checks':checks,'results':results,'length':length})
 
 def list(request):
-    # blogs = Blog.objects.all()
-    list_blog = Blog.objects.get(id=id)
-    return render(request, 'list.html', {'blogs':list_blog})
+    blogs = Blog.objects.all()
+    return render(request, 'list.html', {'blogs':blogs})
 
 def detail(request,id):
     blog = get_object_or_404(Blog, pk = id)

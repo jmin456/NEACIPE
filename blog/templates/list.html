@@ -42,8 +42,8 @@
     <h1>내가 쓴 레시피</h1>
 
     <div class="container">
-    {% for blog in blogs%}
-<!--        {% if blog.writer ==-->
+
+    {% for blog in blogs %}
         <div class="allaround">
                 <div class="blog_image">
                     {%if blog.image %}
@@ -51,7 +51,7 @@
                     {%endif%}
                 </div>
             <div class="all_stuff">
-                <h4 class="blog_title"> <a href = "{%url 'detail' blog.id%}">{{blog.title}}</a></h4>
+                <h4 class="blog_title"> <a href = "{%url 'detail' blog.id %}">{{blog.title}}</a></h4>
                 <div class="blog_writer">
                     <a>ID: </a> {{blog.writer}}
                 </div>
@@ -60,7 +60,6 @@
                 <br>
             </div>
         </div>
-        
     {% endfor %}
     </div>
 
